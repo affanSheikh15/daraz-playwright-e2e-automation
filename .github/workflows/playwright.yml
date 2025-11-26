@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests (Docker Stable)
 
 on:
   push:
@@ -8,29 +8,24 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04   # ✅ IMPORTANT FIX
+    runs-on: ubuntu-latest
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.47.0-jammy  # ✅ Browsers preinstalled
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 24
-
     - name: Install dependencies
       run: npm install
 
-    - name: Install Playwright Browsers (Chromium only)
-      run: npx playwright install chromium   # ✅ NO --with-deps
-
-    - name: Set environment variables from GitHub Secrets
+    - name: Create .env from Secrets
       run: |
         echo "USERNAME=${{ secrets.USERNAME }}" >> .env
         echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
 
-    - name: Run Tests (Chromium only)
+    - name: Run Playwright Tests (Chromium only)
       run: npx playwright test --project=chromium --reporter=html
 
     - name: Upload Test Report
