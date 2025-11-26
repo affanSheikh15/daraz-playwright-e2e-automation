@@ -11,29 +11,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Install Playwright Browsers (Chromium only)
-        run: npx playwright install chromium --with-deps
+    - name: Install Playwright Browsers (Chromium only)
+      run: |
+        npx playwright install-deps
+        npx playwright install chromium
 
-      - name: Run Playwright tests (Chromium)
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx playwright test --project=chromium --reporter=html
+    - name: Set environment variables from GitHub Secrets
+      env:
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        echo "USERNAME=$USERNAME" >> .env
+        echo "PASSWORD=$PASSWORD" >> .env
 
-      - name: Upload Playwright Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report
+    - name: Run Tests (Chromium only)
+      run: npx playwright test --project=chromium --reporter=html
+
+    - name: Upload Test Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: playwright-report
