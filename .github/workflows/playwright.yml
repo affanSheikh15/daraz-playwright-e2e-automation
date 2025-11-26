@@ -27,8 +27,9 @@ jobs:
 
     - name: Create .env from Secrets
       run: |
-        echo "USERNAME=${{ secrets.USERNAME }}" >> .env
-        echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
+        echo "DEMO_USERNAME=${{ secrets.USERNAME }}" >> .env
+        echo "DEMO_PASSWORD=${{ secrets.PASSWORD }}" >> .env
+
 
     - name: Run Chromium tests only
       run: npx playwright test --project=chromium --reporter=html
