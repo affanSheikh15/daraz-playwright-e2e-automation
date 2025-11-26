@@ -1,0 +1,4 @@
+# .gitignore
+.env
+playwright-report/
+test-results/
