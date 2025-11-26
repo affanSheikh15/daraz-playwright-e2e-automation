@@ -23,9 +23,9 @@ jobs:
       run: npm install
 
     - name: Install Playwright Browsers (Chromium only)
-      run: |
-        npx playwright install-deps
-        npx playwright install chromium
+      uses: microsoft/playwright-github-action@v1
+      with:
+        with-deps: true
 
     - name: Set environment variables from GitHub Secrets
       env:
