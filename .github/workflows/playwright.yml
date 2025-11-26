@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04   # ✅ IMPORTANT FIX
 
     steps:
     - name: Checkout repo
@@ -20,12 +20,10 @@ jobs:
         node-version: 24
 
     - name: Install dependencies
-      run: |
-        npm install
-        npm install @playwright/test --save-dev
+      run: npm install
 
-    - name: Install Playwright Browsers + System Deps (Chromium only)
-      run: npx --yes playwright install chromium --with-deps
+    - name: Install Playwright Browsers (Chromium only)
+      run: npx playwright install chromium   # ✅ NO --with-deps
 
     - name: Set environment variables from GitHub Secrets
       run: |
