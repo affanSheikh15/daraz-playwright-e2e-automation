@@ -20,10 +20,12 @@ jobs:
         node-version: 24
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install
+        npm install @playwright/test --save-dev
 
     - name: Install Playwright Browsers + System Deps (Chromium only)
-      run: npx playwright install chromium --with-deps
+      run: npx --yes playwright install chromium --with-deps
 
     - name: Set environment variables from GitHub Secrets
       run: |
