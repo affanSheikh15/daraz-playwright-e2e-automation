@@ -1,4 +1,4 @@
-name: Playwright Tests (Docker Stable)
+name: Playwright Tests (Docker Match Version)
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: mcr.microsoft.com/playwright:v1.47.0-jammy  # ✅ Browsers preinstalled
+      image: mcr.microsoft.com/playwright:v1.56.1-jammy  # ✅ Matches your project version
 
     steps:
     - name: Checkout repo
