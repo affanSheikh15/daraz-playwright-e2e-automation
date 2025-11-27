@@ -25,8 +25,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (skip login tests)
-        run: npx playwright test --project=chromium --reporter=html --grep-invert "login"
+      - name: Run Playwright tests (all browsers including login tests)
+        env:
+          DEMO_USER: ${{ secrets.DEMO_USER }}
+          DEMO_PASS: ${{ secrets.DEMO_PASS }}
+        run: |
+          npx playwright test --reporter=html
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
