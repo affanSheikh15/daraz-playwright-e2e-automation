@@ -1,9 +1,3 @@
-Here is a **clean, professional, emoji-free README** for your full **Playwright JavaScript + POM + Daraz Automation Project** with your exact versions and structure.
-
-If you want, I can also add badges, screenshots, or CI/CD info.
-
----
-
 # Daraz Playwright Automation Framework
 
 This repository contains an end-to-end automation framework built using Playwright (JavaScript) with a complete Page Object Model (POM) architecture. It is designed for scalable, maintainable, and stable UI automation of the Daraz shopping platform.
