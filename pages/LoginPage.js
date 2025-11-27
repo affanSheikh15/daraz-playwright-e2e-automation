@@ -14,7 +14,7 @@ class LoginPage {
   async login(username, password) {
     await this.username.fill(username);
     await this.password.fill(password);
-    // listen for dialog to accept if failure happens
+    
     this.page.once('dialog', async dialog => dialog.accept());
     await this.loginBtn.click();
   }

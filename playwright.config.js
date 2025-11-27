@@ -1,4 +1,3 @@
-// playwright.config.js
 require('dotenv').config();
 
 const config = {
@@ -6,16 +5,16 @@ const config = {
   use: {
     baseURL: process.env.BASE_URL || 'https://www.demoblaze.com',
     headless: true,
-    screenshot: 'on',       // ALWAYS take screenshots
-    trace: 'on',            // ALWAYS record trace
-    video: 'off',           // optional: set 'on' if you want videos too
+    screenshot: 'on',       
+    trace: 'on',            
+    video: 'off',           
     actionTimeout: 10000,
     navigationTimeout: 30000,
   },
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } ,
       launchOptions: {
-        slowMo: 500   // 👈 human-level speed
+        slowMo: 500   
       },workers:1},
     { name: 'firefox', use: { browserName: 'firefox' } },
     { name: 'webkit', use: { browserName: 'webkit' } },

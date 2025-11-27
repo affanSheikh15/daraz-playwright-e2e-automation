@@ -18,21 +18,21 @@ test('TC 06: Open Samsung Galaxy S6 product', async ({ page }) => {
 
   const home = new HomePage(page);
 
-  // Navigate to Phones category
+  
   await home.category('Phones').click();
 
-  // Click Samsung Galaxy S6 product safely
+  
   const productLink = page.getByRole('link', { name: /samsung galaxy s6/i }).first();
   await expect(productLink).toBeVisible();
   await productLink.click();
 
-  // Initialize Product Details Page
+  
   const product = new ProductDetailsPage(page);
 
-  // ✅ Validate title matches (using your POM locator)
+  
   await expect(product.title).toContainText(/samsung galaxy s6/i);
 
-  // ✅ Validate price section is visible
+  
   await expect(product.price).toBeVisible();
 });
 

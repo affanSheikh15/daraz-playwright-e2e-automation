@@ -47,15 +47,15 @@ test.describe('Cart Flow (Stable Fix Pack)', () => {
     const product = new ProductDetailsPage(page);
     const cart = new CartPage(page);
 
-    // First product
+    
     await home.category('Phones').click();
     await page.getByRole('link', { name: /samsung galaxy s6/i }).first().click();
     await product.addProductToCart();
 
-    // Back Home
+    
     await page.click('a.navbar-brand');
 
-    // Second product
+    
     await home.category('Laptops').click();
     await page.getByRole('link', { name: /sony vaio/i }).first().click();
     await product.addProductToCart();
@@ -67,10 +67,10 @@ test.describe('Cart Flow (Stable Fix Pack)', () => {
 
  test('TC 22: Cart page loads without errors (Safe Bypass Mode)', async ({ page }) => {
 
-  // Direct navigation bypassing CartPage.open() timeout
+  
   await page.goto('https://www.demoblaze.com/cart.html');
 
-  // Universal always-present validation
+  
   await expect(page.getByText('Cart')).toBeVisible();
 });
 
