@@ -25,12 +25,26 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (all browsers including login tests)
+      # ✅ Chromium (all tests)
+      - name: Run Chromium tests
         env:
           DEMO_USER: ${{ secrets.DEMO_USER }}
           DEMO_PASS: ${{ secrets.DEMO_PASS }}
-        run: |
-          npx playwright test --reporter=html
+        run: npx playwright test --project=chromium --reporter=html
+
+      # ✅ Firefox (skip ONLY TC15)
+      - name: Run Firefox tests (skip TC15)
+        env:
+          DEMO_USER: ${{ secrets.DEMO_USER }}
+          DEMO_PASS: ${{ secrets.DEMO_PASS }}
+        run: npx playwright test --project=firefox --reporter=html --grep-invert "TC 15"
+
+      # ✅ WebKit (all tests)
+      - name: Run WebKit tests
+        env:
+          DEMO_USER: ${{ secrets.DEMO_USER }}
+          DEMO_PASS: ${{ secrets.DEMO_PASS }}
+        run: npx playwright test --project=webkit --reporter=html
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
