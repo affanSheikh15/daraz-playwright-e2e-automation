@@ -1,4 +1,4 @@
-# Daraz Playwright Automation Framework
+# DemoBlaze Playwright Automation Framework
 
 This repository contains an end-to-end automation framework built using Playwright (JavaScript) with a complete Page Object Model (POM) architecture. It is designed for scalable, maintainable, and stable UI automation of the Daraz shopping platform.
 
